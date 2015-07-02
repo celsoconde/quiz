@@ -17,10 +17,11 @@ exports.index = function(req,res) {
   if (req.query.search) {
       str = '%' + req.query.search.replace(/\s/g,"%") + '%';
   }
-  models.Quiz.findAll({where:["lower(pregunta) like ?", str.toLowerCase()], order: 'pregunta ASC'}).then(function(quizes) {
-    res.render('quizes/index', {quizes:quizes});
-  }
-  ).catch(function(error) { next(error); });
+  models.Quiz.findAll({where:["lower(pregunta) like ?", str.toLowerCase()],
+                       order: 'pregunta ASC'}
+                       ).then(function(quizes) {
+                          res.render('quizes/index', {quizes:quizes});
+                      }).catch(function(error) { next(error); });
 };
 // GET /quizes/:id
 exports.show = function(req, res) {
