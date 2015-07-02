@@ -1,3 +1,13 @@
+<form method="get" action="/quizes" style="margin-bottom:5px;">
+  <fieldset>
+    <legend>Busqueda</legend>
+    <input type="text" name="search" value="texto" />
+    <input type="submit" value="Buscar" />
+  </fieldset>
+</form>
+<% if (quizes.length === 0) { %>
+  <h4>No se han encontrado preguntas</h4>
+<% }  else { %>
 <table>
   <% for (var i=0; i<quizes.length;i++) {  %>
     <tr>
@@ -9,3 +19,5 @@
     </tr>
   <% } %>
 </table>
+<% } %>
+<p align="left">Numero de preguntas totales: <b><%=quizes.length %></b></p>
