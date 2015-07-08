@@ -9,6 +9,5 @@ header, nav, section, footer { background: #eee; text-align: center;}
 nav span {margin: 0px 10px 0px 0px; }
 #ErrorMsgs { color: #f61; font-size: smaler;}
 form input { margin-top: 5px; margin-bottom: 5px;}
-table {width: 100%;}
-td {border:1px solid black;}
+table {width: 100%; border: 1px solid black;}
 .right{float: right;}
