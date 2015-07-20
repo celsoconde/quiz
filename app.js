@@ -26,6 +26,34 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Gestion de auto-logout de session (2 minutos)
+app.use(function(req,res,next){
+
+ //fecha actual
+ var now= new Date();
+
+  //Recuperar fecha session ultima trans (si hay)
+ if (req.session.lastTrans){
+   var dosMins=2*1000*60; //2 minutos en milisegunds
+   var last = new Date(req.session.lastTrans);
+   var diff=now.getTime() - last.getTime();
+
+   if (diff>dosMins){
+    //Elminar session
+      req.session.destroy();
+      res.redirect('/login');
+      return;
+   } else{
+     req.session.lastTrans= now;
+   }
+ } else {
+   req.session.lastTrans= now;
+ }
+
+  next();
+
+});
+
 // Helpers dinamicos
 app.use(function(req, res, next) {
   // guardar path en session.redir para despues de login

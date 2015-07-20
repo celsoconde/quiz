@@ -17,6 +17,11 @@
         <button>Publicar</button>
       </a>
     <% } %>
+    <% if (session.user && quiz.comments[index].publicado) {%>
+      <a href="#">
+        <button>Eliminar</button>
+      </a>
+    <% } %>
     </p>
   <% } %>
 <% } %>
